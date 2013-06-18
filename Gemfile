@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 gem 'rdiscount'
-gem 'sinatra', '1.2.0.d'
+gem 'sinatra'
 gem 'shotgun'
 gem 'thin'
 gem 'tilt'

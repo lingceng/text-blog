@@ -3,10 +3,12 @@ require 'sinatra'
 $LOAD_PATH << File.dirname(__FILE__)+"/lib"
 require 'article'
 
+# like some initial
 configure do
   Article.load(File.dirname(__FILE__)+"/articles")
 end
 
+# like some function
 helpers do
   def archives
     Article.articles
@@ -18,7 +20,7 @@ helpers do
 end
 
 set :views, File.dirname(__FILE__)+'/templates'
-set :title => "Wu Jiang's blog"
+set :title => "Lingceng's blog"
 
 get '/' do
   erb :"pages/index", :locals => { 
@@ -34,7 +36,10 @@ end
 get '/:year/:month/:day/:slug' do |year, month, day, slug|
   @config = {}
   article = Article["#{year}-#{month}-#{day}-#{slug}"]
+
+  # pass to the next matching route unless article
   pass unless article
+
   erb :"pages/article", :locals => article.to_hash
 end
 
